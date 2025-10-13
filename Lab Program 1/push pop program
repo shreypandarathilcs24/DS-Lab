@@ -1,0 +1,79 @@
+#include<stdio.h>
+#define N 2
+
+int stack[N];
+int top=-1;
+
+void push()
+{
+ int x;
+ printf("Enter the data:");
+ scanf("%d",&x);
+ if (top==N-1)
+ {
+     printf("Overflow");
+ }
+ else
+ {
+     top++;
+     stack[top]=x;
+ }
+}
+
+void pop()
+{
+ int item;
+ if (top==-1)
+ {
+    printf("underflow");
+ }
+ else
+ {
+     item=stack[top];
+     top--;
+     printf("%d",item);
+ }
+}
+
+void peek()
+{
+ if (top==-1)
+ {
+     printf("underflow");
+ }
+ else
+ {
+     printf("%d",stack[top]);
+ }
+}
+
+int main()
+{
+
+    int i=1;
+    while (i==1)
+    {
+        int num;
+
+        printf("Enter the number for the following functions: 1 for push, 2 for pop, 3 for peek: ");
+        scanf("%d",&num);
+
+    switch(num)
+    {
+       case 1:
+        push();
+        break;
+    case 2:
+        pop();
+        break;
+    case 3:
+        peek();
+        break;
+    case 4:
+        printf("Invalid number entered");
+        i=0;
+        break;
+    }
+    }
+
+}
