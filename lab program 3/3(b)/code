@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define n 3
+
+int front = -1, rear = -1;
+int enque[n];
+
+void enqueue(int item) {
+    if ((rear + 1) % n == front) {
+        printf("Overflow\n");
+    } else {
+        if (front == -1)
+            front = 0;
+        rear = (rear + 1) % n;
+        enque[rear] = item;
+        printf("%d added to queue\n", item);
+    }
+}
+
+int dequeue() {
+    if (front == -1) {
+        printf("Queue Empty\n");
+        return -1;
+    } else {
+        int item = enque[front];
+        if (front == rear)
+            front = rear = -1;
+        else
+            front = (front + 1) % n;
+        printf("%d removed from queue\n", item);
+        return item;
+    }
+}
+
+void display() {
+    if (front == -1) {
+        printf("Queue Empty...\n");
+        return;
+    }
+
+    int i = front;
+    while (1) {
+        printf("%d ", enque[i]);
+        if (i == rear)
+            break;
+        i = (i + 1) % n;
+    }
+
+}
+
+int main() {
+    int choice = 0;
+    while (choice != 4) {
+        printf("\nEnter 1 for enqueue, 2 for dequeue, 3 for display, 4 for exit: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: {
+                int x;
+                printf("Enter element: ");
+                scanf("%d", &x);
+                enqueue(x);
+                break;
+            }
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("Invalid Choice\n");
+        }
+    }
+}
